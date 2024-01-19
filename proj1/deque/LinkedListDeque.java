@@ -35,13 +35,6 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         size = 0;
     }
 
-    /** Create a LinkedLIstDeque with first Item */
-    public LinkedListDeque(T item) {
-        head.next = new Node<>(item, head, head);
-        head.prev = head.next;
-        size = 1;
-    }
-
     /** Add an item of type T to the front of the deque. */
     public void addFirst(T item) {
         head.next = new Node<>(item, head, head.next);
@@ -111,7 +104,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
 
     /** get the item of the index in recursive way. */
     public T getRecursive(int index) {
-        if (index < 0 || index > size - 1){
+        if (index < 0 || index > size - 1) {
             return null;
         }
         return getRecurHelper(index, head.next);
@@ -123,18 +116,18 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     }
 
     private class LinkedListIterator implements Iterator<T> {
-        private Node<T> p;
-        LinkedListIterator() {
-            p = head.next;
+        private int wizPos;
+        private LinkedListIterator() {
+            wizPos = 0;
         }
 
         public boolean hasNext() {
-            return p == head;
+            return wizPos < size;
         }
 
         public T next() {
-            T item = p.item;
-            p = p.next;
+            T item = get(wizPos);
+            wizPos += 1;
             return item;
         }
     }
@@ -160,15 +153,15 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof LinkedListDeque)) {
+        if (!(o instanceof Deque)) {
             return false;
         }
-        LinkedListDeque<?> lld = (LinkedListDeque<?>) o;
-        if (lld.size() != size) {
+        Deque<?> lld = (Deque<?>) o;
+        if (lld.size() != this.size()) {
             return false;
         }
         for (int i = 0; i < size; i++) {
-            if (lld.get(i) != get(i)) {
+            if (!(lld.get(i).equals(this.get(i)))) {
                 return false;
             }
         }

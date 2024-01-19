@@ -14,13 +14,6 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         nextLast = 4;
     }
 
-    public ArrayDeque(T item) {
-        items[3] = item;
-        size = 1;
-        nextFirst = 2;
-        nextLast = 4;
-    }
-
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
         int firstPos = Math.abs(capacity - size) / 2;
@@ -143,15 +136,15 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof ArrayDeque)) {
+        if (!(o instanceof Deque)) {
             return false;
         }
-        ArrayDeque<?> ad = (ArrayDeque<?>) o;
-        if (ad.size() != size) {
+        Deque<?> ad = (Deque<?>) o;
+        if (ad.size() != this.size()) {
             return false;
         }
         for (int i = 0; i < size; i++) {
-            if (ad.get(i) != get(i)) {
+            if (!(ad.get(i).equals(this.get(i)))) {
                 return false;
             }
         }

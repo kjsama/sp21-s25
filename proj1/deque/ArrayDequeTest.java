@@ -8,10 +8,10 @@ public class ArrayDequeTest {
 
     @Test
     public void nonEmptyInstantiationTest() {
-        ArrayDeque<Integer> arrayDeque = new ArrayDeque<>(1);
+        ArrayDeque<Integer> arrayDeque = new ArrayDeque<>();
 
-        assertFalse("Should not be empty", arrayDeque.isEmpty());
-        assertEquals("Should have size 1", 1, arrayDeque.size());
+        assertTrue("Should be empty", arrayDeque.isEmpty());
+        assertEquals("Should have size 0", 0, arrayDeque.size());
     }
 
     @Test
