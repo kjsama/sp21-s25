@@ -3,18 +3,17 @@ package deque;
 
 import java.util.Iterator;
 
-public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
-
+public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     private Node sentinel;
     private int size;
 
     /* The first item (if exists) is at sentinel.next */
     private class Node {
-        public Node prev;
-        public T item;
-        public  Node next;
+        private Node prev;
+        private T item;
+        private Node next;
 
-        private Node (T i, Node n) {
+        private Node(T i, Node n) {
             item = i;
             next = n;
         }
@@ -127,7 +126,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
 
     private class LinkedListIterator implements Iterator<T> {
         private int wizPos;
-        public LinkedListIterator() {
+        LinkedListIterator() {
             wizPos = 0;
         }
 

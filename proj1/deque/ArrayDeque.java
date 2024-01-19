@@ -1,10 +1,8 @@
 package deque;
 
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.Objects;
 
-public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
+public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     private T[] items = (T[]) new Object[8];
     private int size;
     private int nextFirst;
@@ -13,13 +11,6 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
     public ArrayDeque() {
         size = 0;
         nextFirst = 3;
-        nextLast = 4;
-    }
-
-    public ArrayDeque(T item) {
-        items[3] = item;
-        size = 1;
-        nextFirst = 2;
         nextLast = 4;
     }
 
@@ -44,7 +35,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
     }
 
     public void addFirst(T item) {
-        if (size == items.length - 2){
+        if (size == items.length - 2) {
             resize((int) (items.length * 2));
         }
 
@@ -68,7 +59,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
         } else {
             nextLast += 1;
         }
-        size = size +1;
+        size = size + 1;
     }
 
     private T getFirst() {
@@ -130,10 +121,10 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
         return new ArrayDequeIterator();
     }
 
-    public class ArrayDequeIterator implements Iterator<T> {
+    private class ArrayDequeIterator implements Iterator<T> {
         private int wizPos;
 
-        private  ArrayDequeIterator(){
+        private ArrayDequeIterator() {
             wizPos = 0;
         }
 
@@ -172,7 +163,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
     }
 
     private void printArray() {
-        for (int i= 0; i < items.length; i += 1) {
+        for (int i = 0; i < items.length; i += 1) {
             System.out.print(items[i] + "");
         }
     }
